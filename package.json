@@ -1,0 +1,33 @@
+{
+  "name": "enmeaten",
+  "version": "1.0.3",
+  "description": "Given three points, a, b, and c, and a length p, finds two points that are length p away from b that sit on the bisecting line of the angle between lines ab and bc.",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jimkang/enmeaten.git"
+  },
+  "keywords": [],
+  "author": "Jim Kang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jimkang/enmeaten/issues"
+  },
+  "homepage": "https://github.com/jimkang/enmeaten",
+  "devDependencies": {
+    "d3-queue": "^3.0.1",
+    "d3-shape": "^1.0.0",
+    "scale-to-fit": "^1.0.3",
+    "seedrandom": "^2.4.2",
+    "tape": "^4.6.0"
+  },
+  "dependencies": {
+    "d3-shape": "^1.0.2",
+    "fork-bone": "^1.0.3",
+    "probable": "^2.0.1",
+    "widen-bend": "^1.0.2"
+  }
+}

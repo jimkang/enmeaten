@@ -1,0 +1,186 @@
+<html>
+  <head>
+    <title>enmeaten examples</title>
+    <style>
+        body {
+          font-family: "Helvetica Neue", sans-serif;
+        }
+
+        path {
+          fill: none;
+          stroke-width: 1;
+        }
+
+        .original-line {
+          stroke: #333;
+        }
+
+        .widen-line {
+          stroke: hsl(327, 69%, 48%);
+          stroke-dashoffset: 10;
+          stroke-dasharray: 3, 2;
+        }
+
+        .widen-point {
+          fill: hsla(327, 80%, 50%, 0.8);
+        }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      These are graphs of results from the <a href="https://github.com/jimkang/enmeaten">enmeaten</a> Node module. It's a module that figures out how to widen an elbow point, given two lines that form an elbow.
+    </div>
+
+    <h2>45 degree angle</h2>
+    <div>
+    Input:
+    <pre><code>
+  {
+    start: [30, 50],
+    elbow: [0, 20],
+    end: [20, 0],
+    widenDistance: 20
+  }
+    </code></pre>
+    Result:
+    <pre><code>
+  [
+    [-20, 20],
+    [20, 20]
+  ]
+    </code></pre>
+    </div>
+
+    <svg width="480" height="480">
+      <g transform="matrix(8.8 0 0 8.8 196 20)">
+        <path d=M30,50L0,20L20,0 class="original-line"></path>
+        <path d=M-20,20L20,20 class="widen-line"></path>
+        <circle r="1" cx="-20" cy="20" class="widen-point"></circle>
+        <circle r="1" cx="20" cy="20" class="widen-point"></circle>
+      </g>
+    </svg>
+    
+  <h2>135 degree angle</h2>
+    <div>
+    Input:
+    <pre><code>
+  {
+    start: [0, 100],
+    elbow: [-50, 50],
+    end: [-50, 0],
+    widenDistance: 130
+  }
+    </code></pre>
+    Result:
+    <pre><code>
+  [
+   [-170.104, 99.748],
+   [70.104, 0.251] 
+  ]
+    </code></pre>
+    </div>
+
+
+    <svg width="480" height="240">
+      <g transform="matrix(1.831740646648667 0 0 1.831740646648667 331.58703233243335 20)">
+        <path d=M0,100L-50,50L-50,0 class="original-line"></path>
+        <path d=M-170.10433922646726,99.74884620746167L70.10433922646726,0.25115379253833225 class="widen-line"></path>
+        <circle r="1" cx="-170.10433922646726" cy="99.74884620746167" class="widen-point"></circle>
+        <circle r="1" cx="70.10433922646726" cy="0.25115379253833225" class="widen-point"></circle>
+      </g>
+    </svg>
+    
+  <h2>Narrow angle</h2>
+
+    <div>
+    Input:
+    <pre><code>
+  {
+    start: [-200, -49],
+    elbow: [97, 3],
+    end: [-183, 30],
+    widenDistance: 32
+  }
+    </code></pre>
+    Result:
+    <pre><code>
+  [
+    [128.976, 4.235],
+    [65.024, 1.765]
+  ]
+    </code></pre>
+    </div>
+
+    <svg width="480" height="160">
+      <g transform="matrix(1.3374829102336725 0 0 1.3374829102336725 287.4965820467345 85.53666260144995)">
+        <path d=M-200,-49L97,3L-183,30 class="original-line"></path>
+        <path d=M128.97616607536864,4.234829186747447L65.02383392463136,1.765170813252553 class="widen-line"></path>
+        <circle r="1" cx="128.97616607536864" cy="4.234829186747447" class="widen-point"></circle>
+        <circle r="1" cx="65.02383392463136" cy="1.765170813252553" class="widen-point"></circle>
+      </g>
+    </svg>
+    
+  <h2>Straight line</h2>
+
+      <div>
+    Input:
+    <pre><code>
+  {
+    start: [-64, -64],
+    elbow: [-10, -10],
+    end: [111, 111],
+    widenDistance: 80
+  }
+    </code></pre>
+    Result:
+    <pre><code>
+  [
+    [46.569, -66.569],
+    [-66.569, 46.569]
+  ]
+    </code></pre>
+    </div>
+
+    <svg width="480" height="480">
+      <g transform="matrix(2.4779163798823114 0 0 2.4779163798823114 184.9512818330634 184.9512818330634)">
+        <path d=M-64,-64L-10,-10L111,111 class="original-line"></path>
+        <path d=M46.5685424949238,-66.5685424949238L-66.5685424949238,46.5685424949238 class="widen-line"></path>
+        <circle r="1" cx="46.5685424949238" cy="-66.5685424949238" class="widen-point"></circle>
+        <circle r="1" cx="-66.5685424949238" cy="46.5685424949238" class="widen-point"></circle>
+      </g>
+    </svg>
+    
+  <h2>Completely collapsed</h2>
+
+      <div>
+    Input:
+    <pre><code>
+  {
+    start: [20, 20],
+    elbow: [-20, -20],
+    end: [20, 20],
+    widenDistance: 20
+  }
+    </code></pre>
+    Result:
+    <pre><code>
+  [
+    [-34.142, -34.142],
+    [-5.858, -5.858]
+  ]
+    </code></pre>
+    </div>
+
+    <svg width="480" height="480">
+      <g transform="matrix(8.126757375398844 0 0 8.126757375398844 297.4648524920231 297.4648524920231)">
+        <path d=M20,20L-20,-20L20,20 class="original-line"></path>
+        <path d=M-34.14213562373095,-34.14213562373095L-5.857864376269051,-5.857864376269051 class="widen-line"></path>
+        <circle r="1" cx="-34.14213562373095" cy="-34.14213562373095" class="widen-point"></circle>
+        <circle r="1" cx="-5.857864376269051" cy="-5.857864376269051" class="widen-point"></circle>
+      </g>
+    </svg>
+    
+  </body>
+  </html>
+   
