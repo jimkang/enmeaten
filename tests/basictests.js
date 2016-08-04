@@ -4,6 +4,7 @@ var meatToHTML = require('../tools/meat-to-html');
 var fs = require('fs');
 var queue = require('d3-queue').queue;
 var seedrandom = require('seedrandom');
+var d3 = require('d3-shape');
 
 const tolerance = 0.001;
 var resultHTMLFragments = [];
@@ -18,7 +19,8 @@ var testCases = [
         [0, 20],
         [10, -10]
       ],
-      lengthRange: [20, 48]
+      lengthRange: [20, 48],
+      curve: d3.curveBasisClosed
     },
     expected: {
       controlPoints: [
@@ -31,7 +33,6 @@ var testCases = [
       ]
     }
   },
-
 
   {
     name: 'Five-segment bone',
@@ -73,6 +74,7 @@ var testCases = [
         [25, 75],
         [10, 0]
       ],
+      curve: d3.curveLinear,
       lengthRange: [20, 48]
     },
     expected: {
@@ -107,6 +109,7 @@ var testCases = [
         [80, -80],
         [128, -64]
       ],
+      curve: d3.curveStep,
       lengthRange: [20, 48]
     },
     expected: {

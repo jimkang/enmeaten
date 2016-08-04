@@ -13,15 +13,15 @@
 
         .original-line {
           stroke: #333;
-        }
-
-        .widen-line {
-          stroke: hsl(327, 69%, 48%);
           stroke-dashoffset: 10;
           stroke-dasharray: 3, 2;
         }
 
-        .widen-point {
+        .meat-line {
+          stroke: hsl(327, 69%, 48%);
+        }
+
+        .control-point {
           fill: hsla(327, 80%, 50%, 0.8);
         }
     </style>
@@ -29,155 +29,86 @@
 
   <body>
     <div>
-      These are graphs of results from the <a href="https://github.com/jimkang/enmeaten">enmeaten</a> Node module. It's a module that figures out how to widen an elbow point, given two lines that form an elbow.
+      These are graphs of results from the <a href="https://github.com/jimkang/enmeaten">enmeaten</a> Node module. It takes bone lines, and it fleshes them out.
     </div>
 
-    <h2>45 degree angle</h2>
-    <div>
-    Input:
-    <pre><code>
-  {
-    start: [30, 50],
-    elbow: [0, 20],
-    end: [20, 0],
-    widenDistance: 20
-  }
-    </code></pre>
-    Result:
-    <pre><code>
-  [
-    [-20, 20],
-    [20, 20]
-  ]
-    </code></pre>
-    </div>
+<br /><br />
 
+    <p>Two-segment bone</p>
     <svg width="480" height="480">
-      <g transform="matrix(8.8 0 0 8.8 196 20)">
-        <path d=M30,50L0,20L20,0 class="original-line"></path>
-        <path d=M-20,20L20,20 class="widen-line"></path>
-        <circle r="1" cx="-20" cy="20" class="widen-point"></circle>
-        <circle r="1" cx="20" cy="20" class="widen-point"></circle>
+      <g transform="matrix(4 0 0 4 136.78987873612763 140)">
+        <path d=M30,50L0,20L10,-10 class="original-line"></path>
+        <path d=M35.79831312268794,11.238274922386111C32.13164645602127,-1.2617250776138889,35.065823228010636,-15.630862538806944,28.032911614005318,-22.482097936070137C21,-29.333333333333332,4,-28.666666666666668,-7.199578280671985,-19.184568730596528C-18.39915656134397,-9.70247079452639,-23.79831312268794,8.595058410947223,-16.131646456021272,26.59505841094722C-8.464979789354606,44.59505841094722,12.267510105322698,62.29752920547361,27.133755052661346,65.31543126940348C42,68.33333333333333,51,56.666666666666664,50.36624494733865,45.51790206392986C49.73248989467731,34.369137461193056,39.46497978935461,23.73827492238611,35.79831312268794,11.238274922386111 class="meat-line"></path>
+        <circle r="1" cx="60" cy="45" class="control-point"></circle>
+<circle r="1" cx="29.19746968403191" cy="13.107412383579167" class="control-point"></circle>
+<circle r="1" cx="38" cy="-30" class="control-point"></circle>
+<circle r="1" cx="-13" cy="-28" class="control-point"></circle>
+<circle r="1" cx="-29.19746968403191" cy="26.892587616420833" class="control-point"></circle>
+<circle r="1" cx="33" cy="80" class="control-point"></circle>
       </g>
     </svg>
     
-  <h2>135 degree angle</h2>
-    <div>
-    Input:
-    <pre><code>
-  {
-    start: [0, 100],
-    elbow: [-50, 50],
-    end: [-50, 0],
-    widenDistance: 130
-  }
-    </code></pre>
-    Result:
-    <pre><code>
-  [
-   [-170.104, 99.748],
-   [70.104, 0.251] 
-  ]
-    </code></pre>
-    </div>
-
-
-    <svg width="480" height="240">
-      <g transform="matrix(1.831740646648667 0 0 1.831740646648667 331.58703233243335 20)">
-        <path d=M0,100L-50,50L-50,0 class="original-line"></path>
-        <path d=M-170.10433922646726,99.74884620746167L70.10433922646726,0.25115379253833225 class="widen-line"></path>
-        <circle r="1" cx="-170.10433922646726" cy="99.74884620746167" class="widen-point"></circle>
-        <circle r="1" cx="70.10433922646726" cy="0.25115379253833225" class="widen-point"></circle>
-      </g>
-    </svg>
-    
-  <h2>Narrow angle</h2>
-
-    <div>
-    Input:
-    <pre><code>
-  {
-    start: [-200, -49],
-    elbow: [97, 3],
-    end: [-183, 30],
-    widenDistance: 32
-  }
-    </code></pre>
-    Result:
-    <pre><code>
-  [
-    [128.976, 4.235],
-    [65.024, 1.765]
-  ]
-    </code></pre>
-    </div>
-
-    <svg width="480" height="160">
-      <g transform="matrix(1.3374829102336725 0 0 1.3374829102336725 287.4965820467345 85.53666260144995)">
-        <path d=M-200,-49L97,3L-183,30 class="original-line"></path>
-        <path d=M128.97616607536864,4.234829186747447L65.02383392463136,1.765170813252553 class="widen-line"></path>
-        <circle r="1" cx="128.97616607536864" cy="4.234829186747447" class="widen-point"></circle>
-        <circle r="1" cx="65.02383392463136" cy="1.765170813252553" class="widen-point"></circle>
-      </g>
-    </svg>
-    
-  <h2>Straight line</h2>
-
-      <div>
-    Input:
-    <pre><code>
-  {
-    start: [-64, -64],
-    elbow: [-10, -10],
-    end: [111, 111],
-    widenDistance: 80
-  }
-    </code></pre>
-    Result:
-    <pre><code>
-  [
-    [46.569, -66.569],
-    [-66.569, 46.569]
-  ]
-    </code></pre>
-    </div>
-
+  <p>Five-segment bone</p>
     <svg width="480" height="480">
-      <g transform="matrix(2.4779163798823114 0 0 2.4779163798823114 184.9512818330634 184.9512818330634)">
-        <path d=M-64,-64L-10,-10L111,111 class="original-line"></path>
-        <path d=M46.5685424949238,-66.5685424949238L-66.5685424949238,46.5685424949238 class="widen-line"></path>
-        <circle r="1" cx="46.5685424949238" cy="-66.5685424949238" class="widen-point"></circle>
-        <circle r="1" cx="-66.5685424949238" cy="46.5685424949238" class="widen-point"></circle>
+      <g transform="matrix(1.5277777777777777 0 0 1.5277777777777777 78.05555555555554 93.33333333333333)">
+        <path d=M200,100L140,60L130,30L50,50L10,0 class="original-line"></path>
+        <path d=M174.96684600288123,41.97709785183468C157.3728917937143,29.094068801917885,150.90458326935632,16.397947251208564,133.5301444704553,13.028855430180668C116.15570567155424,9.659763609152773,87.87513659811013,15.617701517806303,72.46909080727706,7.000730567723096C57.063045016444,-1.616240382360111,54.531522508222,-24.808120191180056,38.265761254111,-27.237393428923358C22,-29.666666666666668,-8,-11.333333333333334,-9.932427920777668,9.737393428923362C-11.864855841555334,30.808120191180056,14.27028831688933,54.61624038236011,39.864242526056266,62.83260276561024C65.45819673522321,71.04896514886036,90.51096099511243,63.67356972418056,103.13652219621137,63.637811236485994C115.76208339731033,63.602052748791436,115.96044153961903,70.90593119808211,132.53315399711877,85.35623548149867C149.1058664546185,99.8065397649152,182.05293322730927,121.40326988245761,204.35979994698798,121.86830160789548C226.66666666666666,122.33333333333333,238.33333333333334,101.66666666666667,229.8068667196787,84.7983650587712C221.28040010602408,67.93006345087574,192.56080021204818,54.86012690175147,174.96684600288123,41.97709785183468 class="meat-line"></path>
+        <circle r="1" cx="250" cy="81" class="control-point"></circle>
+<circle r="1" cx="163.84120031807225" cy="41.79019035262721" class="control-point"></circle>
+<circle r="1" cx="144.43627474499837" cy="3.701825700499242" class="control-point"></circle>
+<circle r="1" cx="59.594567524666004" cy="21.575639426459833" class="control-point"></circle>
+<circle r="1" cx="52" cy="-48" class="control-point"></circle>
+<circle r="1" cx="-38" cy="7" class="control-point"></circle>
+<circle r="1" cx="40.405432475333996" cy="78.42436057354017" class="control-point"></circle>
+<circle r="1" cx="115.56372525500163" cy="56.29817429950076" class="control-point"></circle>
+<circle r="1" cx="116.15879968192775" cy="78.2098096473728" class="control-point"></circle>
+<circle r="1" cx="215" cy="143" class="control-point"></circle>
       </g>
     </svg>
     
-  <h2>Completely collapsed</h2>
-
-      <div>
-    Input:
-    <pre><code>
-  {
-    start: [20, 20],
-    elbow: [-20, -20],
-    end: [20, 20],
-    widenDistance: 20
-  }
-    </code></pre>
-    Result:
-    <pre><code>
-  [
-    [-34.142, -34.142],
-    [-5.858, -5.858]
-  ]
-    </code></pre>
-    </div>
-
+  <p>Five-segment bone, crunched</p>
     <svg width="480" height="480">
-      <g transform="matrix(8.126757375398844 0 0 8.126757375398844 297.4648524920231 297.4648524920231)">
-        <path d=M20,20L-20,-20L20,20 class="original-line"></path>
-        <path d=M-34.14213562373095,-34.14213562373095L-5.857864376269051,-5.857864376269051 class="widen-line"></path>
-        <circle r="1" cx="-34.14213562373095" cy="-34.14213562373095" class="widen-point"></circle>
-        <circle r="1" cx="-5.857864376269051" cy="-5.857864376269051" class="widen-point"></circle>
+      <g transform="matrix(2.2 0 0 2.2 141 149.8)">
+        <path d=M100,100L50,60L70,30L25,75L10,0 class="original-line"></path>
+        <path d=M145,87L79.64484105212858,55.3974573338173L89.01966716816614,6.7997357598629335L33.6935244606529,46.28723920532841L77,-59L-55,-18L16.306475539347097,103.7127607946716L50.980332831833856,53.20026424013707L20.355158947871423,64.6025426661827L110,141 class="meat-line"></path>
+        <circle r="1" cx="145" cy="87" class="control-point"></circle>
+<circle r="1" cx="79.64484105212858" cy="55.3974573338173" class="control-point"></circle>
+<circle r="1" cx="89.01966716816614" cy="6.7997357598629335" class="control-point"></circle>
+<circle r="1" cx="33.6935244606529" cy="46.28723920532841" class="control-point"></circle>
+<circle r="1" cx="77" cy="-59" class="control-point"></circle>
+<circle r="1" cx="-55" cy="-18" class="control-point"></circle>
+<circle r="1" cx="16.306475539347097" cy="103.7127607946716" class="control-point"></circle>
+<circle r="1" cx="50.980332831833856" cy="53.20026424013707" class="control-point"></circle>
+<circle r="1" cx="20.355158947871423" cy="64.6025426661827" class="control-point"></circle>
+<circle r="1" cx="110" cy="141" class="control-point"></circle>
+      </g>
+    </svg>
+    
+  <p>Ten-segment bone</p>
+    <svg width="480" height="480">
+      <g transform="matrix(1.556330024812857 0 0 1.556330024812857 63.13584367272145 190.0611959133172)">
+        <path d=M200,100L140,60L130,30L50,50L10,0L0,-30L20,-40L33,-35L80,-80L128,-64 class="original-line"></path>
+        <path d=M255,128L209.42060015903613,128L209.42060015903613,41.79019035262721L154.1387375315353,41.79019035262721L154.1387375315353,3.701825700499242L102.0154211348322,3.701825700499242L102.0154211348322,21.575639426459833L47.973617425104806,21.575639426459833L47.973617425104806,-14.336559030298266L32.0345266504411,-14.336559030298266L32.0345266504411,-18.519497029047308L24.58146574052865,-18.519497029047308L24.58146574052865,-10.034895192910053L30.177497758916033,-10.034895192910053L30.177497758916033,-5.587583940547194L62.741661507734904,-5.587583940547194L62.741661507734904,-50.72934840168851L114.78743650167823,-50.72934840168851L114.78743650167823,-42L158,-42L158,-54L123.21256349832177,-54L123.21256349832177,-109.27065159831149L50.258338492265096,-109.27065159831149L50.258338492265096,-64.41241605945281L22.822502241083967,-64.41241605945281L22.822502241083967,-69.96510480708994L-4.58146574052865,-69.96510480708994L-4.58146574052865,-41.48050297095269L-22.0345266504411,-41.48050297095269L-22.0345266504411,14.336559030298266L12.026382574895198,14.336559030298266L12.026382574895198,78.42436057354017L77.9845788651678,78.42436057354017L77.9845788651678,56.29817429950076L115.86126246846469,56.29817429950076L115.86126246846469,78.2098096473728L173.57939984096387,78.2098096473728L173.57939984096387,157L231,157 class="meat-line"></path>
+        <circle r="1" cx="255" cy="128" class="control-point"></circle>
+<circle r="1" cx="163.84120031807225" cy="41.79019035262721" class="control-point"></circle>
+<circle r="1" cx="144.43627474499837" cy="3.701825700499242" class="control-point"></circle>
+<circle r="1" cx="59.594567524666004" cy="21.575639426459833" class="control-point"></circle>
+<circle r="1" cx="36.3526673255436" cy="-14.336559030298266" class="control-point"></circle>
+<circle r="1" cx="27.716385975338603" cy="-18.519497029047308" class="control-point"></circle>
+<circle r="1" cx="21.446545505718696" cy="-10.034895192910053" class="control-point"></circle>
+<circle r="1" cx="38.90845001211337" cy="-5.587583940547194" class="control-point"></circle>
+<circle r="1" cx="86.57487300335644" cy="-50.72934840168851" class="control-point"></circle>
+<circle r="1" cx="143" cy="-42" class="control-point"></circle>
+<circle r="1" cx="173" cy="-54" class="control-point"></circle>
+<circle r="1" cx="73.42512699664356" cy="-109.27065159831149" class="control-point"></circle>
+<circle r="1" cx="27.09154998788663" cy="-64.41241605945281" class="control-point"></circle>
+<circle r="1" cx="18.553454494281304" cy="-69.96510480708994" class="control-point"></circle>
+<circle r="1" cx="-27.716385975338603" cy="-41.48050297095269" class="control-point"></circle>
+<circle r="1" cx="-16.3526673255436" cy="14.336559030298266" class="control-point"></circle>
+<circle r="1" cx="40.405432475333996" cy="78.42436057354017" class="control-point"></circle>
+<circle r="1" cx="115.56372525500163" cy="56.29817429950076" class="control-point"></circle>
+<circle r="1" cx="116.15879968192775" cy="78.2098096473728" class="control-point"></circle>
+<circle r="1" cx="231" cy="157" class="control-point"></circle>
       </g>
     </svg>
     

@@ -15,12 +15,8 @@ function Enmeaten(createOpts) {
   var forkBone = ForkBone({
     random: random
   });
-  // TODO: Make this configurable.
-  // curveLinear is good for debugging.
-  line.curve(d3.curveBasisClosed);
 
   return enmeaten;
-
 
   // Re: "alpha" and "beta": Imagine the bone is pointing up, and we are starting
   // at the bottom of the bone. Then, the meat control points around it on the
@@ -33,10 +29,19 @@ function Enmeaten(createOpts) {
 
   function enmeaten(opts) {
     var bone;
+    var curve;
 
     if (opts) {
       bone = opts.bone;
+      curve = opts.curve;
     }
+
+    if (!curve) {
+      curve = d3.curveBasisClosed;
+    }
+
+    line.curve(curve);
+
 
     var alpha = [];
     var beta = [];
