@@ -1,16 +1,23 @@
 const d3 = require('d3-shape');
 const scaleToFit = require('scale-to-fit');
 
-function bendToHTML(opts, done) {
-  const {
+function meatToHTML(opts, done) {
+  var {
     title,
     originalLine,
     meatPoints,
-    meatPath
+    curve
   } = opts;
 
-  const line = d3.line();
-  line.curve(d3.curveLinear);
+  if (!curve) {
+    curve = d3.curveLinear;
+  }
+
+  const boneLine = d3.line();
+  boneLine.curve(d3.curveLinear);
+  const meatLine = d3.line();
+  meatLine.curve(curve);
+  const meatPath = meatLine(meatPoints);
 
   const bounds = getBounds(originalLine.concat(meatPoints));
 
@@ -37,7 +44,7 @@ function bendToHTML(opts, done) {
   return `  <p>${title}</p>
     <svg width="${boardWidth}" height="${boardHeight}">
       <g transform="matrix(${matrixPoints.join(' ')})">
-        <path d=${line(originalLine)} class="original-line"></path>
+        <path d=${boneLine(originalLine)} class="original-line"></path>
         <path d=${meatPath} class="meat-line"></path>
         ${meatPoints.map(getMeatPointCircle).join('\n')}
       </g>
@@ -81,4 +88,4 @@ function getMeatPointCircle(point) {
   return `<circle r="1" cx="${point[0]}" cy="${point[1]}" class="control-point"></circle>`;
 }
 
-module.exports = bendToHTML;
+module.exports = meatToHTML;

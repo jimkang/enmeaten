@@ -1,8 +1,6 @@
 var createProbable = require('probable').createProbable;
 var ForkBone = require('fork-bone');
 var widenBend = require('widen-bend');
-var d3 = require('d3-shape');
-var line = d3.line();
 
 function Enmeaten(createOpts) {
   var random;
@@ -36,23 +34,11 @@ function Enmeaten(createOpts) {
       curve = opts.curve;
     }
 
-    if (!curve) {
-      curve = d3.curveBasisClosed;
-    }
-
-    line.curve(curve);
-
-
     var alpha = [];
     var beta = [];
 
     bone.forEach(enmeatenPoint);
-    var controlPoints = alpha.concat(beta);
-
-    return {
-      controlPoints: controlPoints,
-      path: line(controlPoints)
-    };
+    return alpha.concat(beta);
 
     function enmeatenPoint(point, i) {
       if (i === 0 && bone.length > 1) {
