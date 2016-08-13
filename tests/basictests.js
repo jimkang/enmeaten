@@ -1,3 +1,5 @@
+/* global __dirname */
+
 var test = require('tape');
 var Enmeaten = require('../index');
 var meatToHTML = require('../tools/meat-to-html');
@@ -132,7 +134,7 @@ var testCases = [
 ((function go() {
   var q = queue(1);
   testCases.forEach(queueTestRun);
-  q.awaitAll(writeOutHTMLFragments)
+  q.awaitAll(writeOutHTMLFragments);
 
   function queueTestRun(testCase) {
     q.defer(runTest, testCase);
@@ -205,7 +207,7 @@ function writeOutHTMLFragments() {
   </body>
   </html>
    `;
-   var filepath = __dirname + '/basic-test-results.html';
-   fs.writeFileSync(filepath, html);
+  var filepath = __dirname + '/basic-test-results.html';
+  fs.writeFileSync(filepath, html);
   console.log('Wrote rendered test results to', filepath);
 }

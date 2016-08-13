@@ -1,7 +1,7 @@
 const d3 = require('d3-shape');
 const scaleToFit = require('scale-to-fit');
 
-function meatToHTML(opts, done) {
+function meatToHTML(opts) {
   var {
     title,
     originalLine,
@@ -24,9 +24,6 @@ function meatToHTML(opts, done) {
   const boardWidth = 480;
   const boardHeight = 480;
   const margin = 20;
-
-  const branchC = [originalLine[1], meatPoints[0]];
-  const branchD = [originalLine[1], meatPoints[1]];
 
   var matrixPoints = scaleToFit({
     view: {

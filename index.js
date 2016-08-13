@@ -1,4 +1,3 @@
-var createProbable = require('probable').createProbable;
 var ForkBone = require('fork-bone');
 var widenBend = require('widen-bend');
 
@@ -7,9 +6,6 @@ function Enmeaten(createOpts) {
   if (createOpts) {
     random = createOpts.random;
   }
-  var probable = createProbable({
-    random: random
-  });
   var forkBone = ForkBone({
     random: random
   });
@@ -27,12 +23,10 @@ function Enmeaten(createOpts) {
 
   function enmeaten(opts) {
     var bone;
-    var curve;
     var forkLengthRange;
 
     if (opts) {
       bone = opts.bone;
-      curve = opts.curve;
       forkLengthRange = opts.forkLengthRange;
     }
 
@@ -85,15 +79,6 @@ function Enmeaten(createOpts) {
         }
       }
     }
-
-  }
-
-  function between(a, b) {
-    var range = b - a;
-    var sign = range >= 0 ? 1 : -1;
-    // TODO: Make this OK for really small numbers.
-    var extent = sign * probable.roll(Math.abs(range));
-    return a + extent;
   }
 }
 
@@ -108,31 +93,6 @@ function isVectorAToTheRightOfVectorB(a, b) {
 
 function dotProduct(a, b) {
   return a[0] * b[0] + a[1] * b[1];
-}
-
-function getVectorMagnitude(v) {
-  return Math.sqrt(v[0] * v[0] + v[1] * v[1]);
-}
-
-function addPairs(a, b) {
-  return [a[0] + b[0], a[1] + b[1]];
-}
-
-function subtractPairs(a, b) {
-  return [a[0] - b[0], a[1] - b[1]];
-}
-
-function multiplyPairBySingleValue(pair, single) {
-  return [pair[0] * single, pair[1] * single];
-}
-
-function getPerpendicularVector(v) {
-  return [-v[1], v[0]];
-}
-
-function changeVectorMagnitude(v, newMagnitude) {
-  var currentMagnitude = getVectorMagnitude(v);
-  return multiplyPairBySingleValue(v, newMagnitude/currentMagnitude);
 }
 
 module.exports = Enmeaten;
