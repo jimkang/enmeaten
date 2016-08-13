@@ -10,7 +10,7 @@ function meatToHTML(opts, done) {
   } = opts;
 
   if (!curve) {
-    curve = d3.curveLinear;
+    curve = d3.curveLinearClosed;
   }
 
   const boneLine = d3.line();

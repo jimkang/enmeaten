@@ -19,7 +19,8 @@ Usage
         [30, 50],
         [0, 20],
         [10, -10]
-      ]
+      ],
+      forkLengthRange: [10, 25]
     }));
 
 Output:

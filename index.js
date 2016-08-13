@@ -28,10 +28,12 @@ function Enmeaten(createOpts) {
   function enmeaten(opts) {
     var bone;
     var curve;
+    var forkLengthRange;
 
     if (opts) {
       bone = opts.bone;
       curve = opts.curve;
+      forkLengthRange = opts.forkLengthRange;
     }
 
     var alpha = [];
@@ -47,7 +49,7 @@ function Enmeaten(createOpts) {
             bone[1],
             point
           ],
-          lengthRange: [20, 40] // lengthRange currently not used.
+          lengthRange: forkLengthRange
         });
         alpha.push(startFork[0]);
         beta.unshift(startFork[1]);
