@@ -54,7 +54,7 @@ function Enmeaten(createOpts) {
             bone[i - 1],
             point
           ],
-          lengthRange: [20, 40] // lengthRange currently not used.
+          lengthRange: forkLengthRange
         });
         alpha.push(endFork[1]);
         beta.unshift(endFork[0]);
