@@ -31,6 +31,7 @@
     "tape": "^4.6.0"
   },
   "dependencies": {
+    "basic-2d-math": "^1.0.0",
     "d3-shape": "^1.0.2",
     "fork-bone": "^1.1.2",
     "probable": "^2.0.1",

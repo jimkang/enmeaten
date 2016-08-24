@@ -1,5 +1,6 @@
 var ForkBone = require('fork-bone');
 var widenBend = require('widen-bend');
+var math = require('basic-2d-math');
 
 function Enmeaten(createOpts) {
   var random;
@@ -24,14 +25,22 @@ function Enmeaten(createOpts) {
   function enmeaten(opts) {
     var bone;
     var forkLengthRange;
+    var extraRoundness;
 
     if (opts) {
       bone = opts.bone;
       forkLengthRange = opts.forkLengthRange;
+      extraRoundness = opts.extraRoundness;
     }
 
     var alpha = [];
     var beta = [];
+
+    var segmentCount = bone.length - 1;
+    var endToEndDistance = math.getVectorMagnitude(
+      math.subtractPairs(bone[segmentCount], bone[0])
+    );
+    var indexMidpoint = (segmentCount)/2;
 
     bone.forEach(enmeatenPoint);
     return alpha.concat(beta);
@@ -48,7 +57,7 @@ function Enmeaten(createOpts) {
         alpha.push(startFork[0]);
         beta.unshift(startFork[1]);
       }
-      else if (i === bone.length - 1 && bone.length > 1) {
+      else if (i === segmentCount && bone.length > 1) {
         var endFork = forkBone({
           line: [
             bone[i - 1],
@@ -61,11 +70,17 @@ function Enmeaten(createOpts) {
       }
       else if (bone.length > 2) {
         var a = bone[i - 1];
+        var widenDistance = endToEndDistance/(segmentCount);
+        // TODO: Should take some kind of interpolation function.
+        if (!isNaN(extraRoundness)) {
+          var extraWideningProportion = 1.0 - Math.abs(i - indexMidpoint)/segmentCount;
+          widenDistance += extraWideningProportion * extraRoundness;
+        }
         var widenPoints = widenBend({
           start: a,
           elbow: point,
           end: bone[i + 1],
-          widenDistance: 30
+          widenDistance: widenDistance
         });
         var ab = [point[0] - a[0], point[1] - a[1]];
         var eb = [widenPoints[1][0] - point[0], widenPoints[1][1] - point[1]];

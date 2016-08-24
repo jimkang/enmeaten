@@ -13,6 +13,31 @@ var resultHTMLFragments = [];
 
 var testCases = [
   {
+    name: 'Three-segment bone, high rounding',
+    seed: 'asdf',
+    renderCurve: d3.curveBasisClosed,
+    opts: {
+      bone: [
+        [30, 50],
+        [0, 20],
+        [10, -10],
+        [0, -30]
+      ],
+      extraRoundness: 20
+    },
+    expected: [
+      [ 60.41348671995223, 69.26187492263641 ],
+      [ 29.19746968403191, 13.107412383579167 ],
+      [ 32.41099750097626, -15.171768654071444 ],
+      [ -4.171445780818278, -63.14292167806854 ],
+      [ -29.19746968403191, 26.892587616420833 ],
+      [ 8.366692347216063, 82.4499614791759 ],
+      [0, 0],
+      [0, 0]
+    ]
+  },
+
+  {
     name: 'Two-segment bone',
     seed: 'asdf',
     renderCurve: d3.curveBasisClosed,
