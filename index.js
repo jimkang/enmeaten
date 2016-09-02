@@ -26,11 +26,13 @@ function Enmeaten(createOpts) {
     var bone;
     var forkLengthRange;
     var extraRoundness;
+    var symmetricalEnds;
 
     if (opts) {
       bone = opts.bone;
       forkLengthRange = opts.forkLengthRange;
       extraRoundness = opts.extraRoundness;
+      symmetricalEnds = opts.symmetricalEnds;
     }
 
     var alpha = [];
@@ -52,7 +54,8 @@ function Enmeaten(createOpts) {
             bone[1],
             point
           ],
-          lengthRange: forkLengthRange
+          lengthRange: forkLengthRange,
+          symmetrical: symmetricalEnds
         });
         alpha.push(startFork[0]);
         beta.unshift(startFork[1]);
@@ -63,7 +66,8 @@ function Enmeaten(createOpts) {
             bone[i - 1],
             point
           ],
-          lengthRange: forkLengthRange
+          lengthRange: forkLengthRange,
+          symmetrical: symmetricalEnds
         });
         alpha.push(endFork[1]);
         beta.unshift(endFork[0]);

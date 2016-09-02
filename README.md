@@ -38,6 +38,8 @@ Output:
 
 You can also provide an `extraRoundness` opt (a number) to make it that much meatier in the middle of the bone. `extraRoundnessInterpolator` is a function you can pass to make it use that to decide how much extra roundness it should apply, depending on how far it is from the middle of the bone.
 
+`symmetrical ends` will made the ends of the meat symmetrical along the axis of the bone.
+
 Tests
 -----
 
