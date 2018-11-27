@@ -32,9 +32,8 @@
   },
   "dependencies": {
     "basic-2d-math": "^1.0.0",
-    "d3-shape": "^1.0.2",
-    "fork-bone": "^1.3.1",
-    "probable": "^2.0.1",
+    "fork-bone": "^2.0.0",
+    "probable": "^2.1.2",
     "widen-bend": "^1.0.2"
   }
 }
