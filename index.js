@@ -32,6 +32,7 @@ function Enmeaten(createOpts) {
     var extraRoundness;
     var symmetricalEnds;
     var wideEnds;
+    var widthInterpolator;
 
     if (opts) {
       bone = opts.bone;
@@ -39,6 +40,7 @@ function Enmeaten(createOpts) {
       extraRoundness = opts.extraRoundness;
       symmetricalEnds = opts.symmetricalEnds;
       wideEnds = opts.wideEnds;
+      widthInterpolator = opts.widthInterpolator;
     }
 
     var alpha = [];
@@ -75,17 +77,27 @@ function Enmeaten(createOpts) {
       } else if (bone.length > 2) {
         var a = bone[i - 1];
         var widenDistance = endToEndDistance / segmentCount;
-        // TODO: Should take some kind of interpolation function.
         if (!isNaN(extraRoundness)) {
           var extraWideningProportion =
             1.0 - Math.abs(i - indexMidpoint) / segmentCount;
           widenDistance += extraWideningProportion * extraRoundness;
         }
+        let start = a;
+        let elbow = point;
+        let end = bone[i + 1];
+        if (widthInterpolator) {
+          widenDistance = widthInterpolator({
+            width: widenDistance,
+            start,
+            elbow,
+            end
+          });
+        }
         var widenPoints = widenBend({
-          start: a,
-          elbow: point,
-          end: bone[i + 1],
-          widenDistance: widenDistance
+          start,
+          elbow,
+          end,
+          widenDistance
         });
         var ab = [point[0] - a[0], point[1] - a[1]];
         var eb = [widenPoints[1][0] - point[0], widenPoints[1][1] - point[1]];

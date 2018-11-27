@@ -22,9 +22,30 @@ var testCases = [
   },
 
   {
-    name: 'Three-segment bone, symmetrical ends',
+    name: 'Three-segment bone, narrowed with custom function',
     seed: 'asdf',
     renderCurve: d3.curveBasisClosed,
+    opts: {
+      bone: [[30, 50], [0, 20], [10, -10], [0, -30]],
+      extraRoundness: 20,
+      widthInterpolator({ width, start, elbow, end }) {
+        console.log(
+          'widthInterpolator: start',
+          start,
+          'elbow',
+          elbow,
+          'end',
+          end
+        );
+        return width / 3;
+      }
+    }
+  },
+
+  {
+    name: 'Three-segment bone, symmetrical ends',
+    seed: 'asdf',
+    enderCurve: d3.curveBasisClosed,
     opts: {
       bone: [[30, 50], [0, 20], [10, -10], [0, -30]],
       symmetricalEnds: true
