@@ -4,11 +4,15 @@ var math = require('basic-2d-math');
 
 function Enmeaten(createOpts) {
   var random;
+  var numberOfDecimalsToConsider;
+
   if (createOpts) {
     random = createOpts.random;
+    numberOfDecimalsToConsider = createOpts.numberOfDecimalsToConsider;
   }
   var forkBone = ForkBone({
-    random: random
+    random,
+    numberOfDecimalsToConsider
   });
 
   return enmeaten;

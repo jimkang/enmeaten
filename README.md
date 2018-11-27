@@ -12,7 +12,9 @@ Usage
 -----
 
     var Enmeaten = require('enmeaten');
-    var enmeaten = Enmeaten();
+    var enmeaten = Enmeaten({
+      numberOfDecimalsToConsider: 4
+    });
     
     console.log(enmeaten({
       bone: [
@@ -40,6 +42,11 @@ You can also provide an `extraRoundness` opt (a number) to make it that much mea
 
 `symmetricalEnds` will make the ends of the meat symmetrical along the axis of the bone.
 `wideEnds` will make the ends of the meat wide, rather than narrow.
+
+When creating an Enmeaten instance, the following opts can be specified:
+
+  - `random`: A function that behaves like `Math.random`. You can substitute one created by [seedrandom](https://github.com/davidbau/seedrandom) or something you've written yourself. Helps with situations in which you want reproducible results.
+  - `numberOfDecimalsToConsider`: A positive number that tells it how precise to be when picking numbers in a range. If it encounters a range of 0.001, by default, it will always pick 0. (If the range is 100, it'll pick a whole number between 0 and 99.) If you specify 3 as `numberOfDecimalsToConsider`, it can pick numbers like 0.003 and 0.995. Useful for working for points that are really close together.
 
 Tests
 -----
