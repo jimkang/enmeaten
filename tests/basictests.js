@@ -16,12 +16,7 @@ var testCases = [
     seed: 'asdf',
     renderCurve: d3.curveBasisClosed,
     opts: {
-      bone: [
-        [30, 50],
-        [0, 20],
-        [10, -10],
-        [0, -30]
-      ],
+      bone: [[30, 50], [0, 20], [10, -10], [0, -30]],
       extraRoundness: 20
     }
   },
@@ -31,12 +26,7 @@ var testCases = [
     seed: 'asdf',
     renderCurve: d3.curveBasisClosed,
     opts: {
-      bone: [
-        [30, 50],
-        [0, 20],
-        [10, -10],
-        [0, -30]
-      ],
+      bone: [[30, 50], [0, 20], [10, -10], [0, -30]],
       symmetricalEnds: true
     }
   },
@@ -46,12 +36,7 @@ var testCases = [
     seed: 'zxcv',
     renderCurve: d3.curveBasisClosed,
     opts: {
-      bone: [
-        [30, 50],
-        [0, 20],
-        [10, -10],
-        [0, -30]
-      ],
+      bone: [[30, 50], [0, 20], [10, -10], [0, -30]],
       symmetricalEnds: true,
       wideEnds: true
     }
@@ -62,11 +47,7 @@ var testCases = [
     seed: 'asdf',
     renderCurve: d3.curveBasisClosed,
     opts: {
-      bone: [
-        [30, 50],
-        [0, 20],
-        [10, -10]
-      ]
+      bone: [[30, 50], [0, 20], [10, -10]]
     }
   },
 
@@ -74,13 +55,7 @@ var testCases = [
     name: 'Five-segment bone',
     seed: 'asdf',
     opts: {
-      bone: [
-        [200, 100],
-        [140, 60],
-        [130, 30],
-        [50, 50],
-        [10, 0]
-      ],
+      bone: [[200, 100], [140, 60], [130, 30], [50, 50], [10, 0]],
       forkLengthRange: [150, 300]
     }
   },
@@ -89,13 +64,7 @@ var testCases = [
     name: 'Five-segment bone, crunched',
     seed: 'asdf',
     opts: {
-      bone: [
-        [100, 100],
-        [50, 60],
-        [70, 30],
-        [25, 75],
-        [10, 0]
-      ],
+      bone: [[100, 100], [50, 60], [70, 30], [25, 75], [10, 0]],
       forkLengthRange: [1, 10]
     }
   },
@@ -121,7 +90,7 @@ var testCases = [
   }
 ];
 
-((function go() {
+(function go() {
   var q = queue(1);
   testCases.forEach(queueTestRun);
   q.awaitAll(writeOutHTMLFragments);
@@ -129,7 +98,7 @@ var testCases = [
   function queueTestRun(testCase) {
     q.defer(runTest, testCase);
   }
-})());
+})();
 
 function runTest(testCase, done) {
   test(testCase.name, basicTest);
@@ -140,12 +109,14 @@ function runTest(testCase, done) {
     });
     var meatPoints = enmeaten(testCase.opts);
 
-    resultHTMLFragments.push(meatToHTML({
-      title: testCase.name,
-      originalLine: testCase.opts.bone,
-      meatPoints: meatPoints,
-      curve: testCase.renderCurve
-    }));
+    resultHTMLFragments.push(
+      meatToHTML({
+        title: testCase.name,
+        originalLine: testCase.opts.bone,
+        meatPoints: meatPoints,
+        curve: testCase.renderCurve
+      })
+    );
 
     console.log(meatPoints);
     // I don't think there's much point in checking against specific

@@ -4,5 +4,6 @@ test:
 pushall:
 	git push origin gh-pages && npm publish
 
-lint:
-	./node_modules/.bin/eslint .
+prettier:
+	prettier --single-quote --write "**/*.js"
+

@@ -2,12 +2,7 @@ const d3 = require('d3-shape');
 const scaleToFit = require('scale-to-fit');
 
 function meatToHTML(opts) {
-  var {
-    title,
-    originalLine,
-    meatPoints,
-    curve
-  } = opts;
+  var { title, originalLine, meatPoints, curve } = opts;
 
   if (!curve) {
     curve = d3.curveLinearClosed;
@@ -60,15 +55,13 @@ function getBounds(points) {
   function updateBoundsForPoint(point) {
     if (point[0] < left) {
       left = point[0];
-    }
-    else if (point[0] > right) {
+    } else if (point[0] > right) {
       right = point[0];
     }
 
     if (point[1] < top) {
       top = point[1];
-    }
-    else if (point[1] > bottom) {
+    } else if (point[1] > bottom) {
       bottom = point[1];
     }
   }
@@ -82,7 +75,9 @@ function getBounds(points) {
 }
 
 function getMeatPointCircle(point) {
-  return `<circle r="1" cx="${point[0]}" cy="${point[1]}" class="control-point"></circle>`;
+  return `<circle r="1" cx="${point[0]}" cy="${
+    point[1]
+  }" class="control-point"></circle>`;
 }
 
 module.exports = meatToHTML;
