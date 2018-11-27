@@ -28,14 +28,16 @@ var testCases = [
     opts: {
       bone: [[30, 50], [0, 20], [10, -10], [0, -30]],
       extraRoundness: 20,
-      widthInterpolator({ width, start, elbow, end }) {
+      widthInterpolator({ width, start, elbow, end, endToEndDistance }) {
         console.log(
           'widthInterpolator: start',
           start,
           'elbow',
           elbow,
           'end',
-          end
+          end,
+          'endToEndDistance',
+          endToEndDistance
         );
         return width / 3;
       }

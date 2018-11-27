@@ -90,7 +90,8 @@ function Enmeaten(createOpts) {
             width: widenDistance,
             start,
             elbow,
-            end
+            end,
+            endToEndDistance
           });
         }
         var widenPoints = widenBend({
