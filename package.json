@@ -1,6 +1,6 @@
 {
   "name": "enmeaten",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "You give it a bone line, and it fleshes it out.",
   "main": "index.js",
   "scripts": {
