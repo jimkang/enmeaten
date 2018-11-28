@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "basic-2d-math": "^1.0.0",
-    "fork-bone": "^2.0.0",
+    "fork-bone": "^3.0.1",
     "probable": "^2.1.2",
     "widen-bend": "^1.0.2"
   }

@@ -41,7 +41,7 @@ Output:
 You can also provide an `extraRoundness` opt (a number) to make it that much meatier in the middle of the bone. 
 
 `symmetricalEnds` will make the ends of the meat symmetrical along the axis of the bone.
-`wideEnds` will make the ends of the meat wide, rather than narrow.
+`endAngleRange` will control how wide the ends of the meat are. See [fork-bone's angleRange opt](https://github.com/jimkang/fork-bone#usage) for more details.
 `widthInterpolator` is a function you provide to alter the width at the "elbows" of the bone. The function signature is ({ width, start, elbow, end, endToEndDistance }), where `width` is the width it was planning to use at the elbow. `endToEndDistance` is the total length of the bone. The other three opts are [x, y] values of the bend it is currently working on. enmeaten expects the interpolator to return a new width.
 
 When creating an Enmeaten instance, the following opts can be specified:

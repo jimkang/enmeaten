@@ -31,7 +31,7 @@ function Enmeaten(createOpts) {
     var forkLengthRange;
     var extraRoundness;
     var symmetricalEnds;
-    var wideEnds;
+    var endAngleRange;
     var widthInterpolator;
 
     if (opts) {
@@ -39,8 +39,12 @@ function Enmeaten(createOpts) {
       forkLengthRange = opts.forkLengthRange;
       extraRoundness = opts.extraRoundness;
       symmetricalEnds = opts.symmetricalEnds;
-      wideEnds = opts.wideEnds;
+      endAngleRange = opts.endAngleRange;
       widthInterpolator = opts.widthInterpolator;
+    }
+
+    if (!endAngleRange) {
+      endAngleRange = [30, 60];
     }
 
     var alpha = [];
@@ -61,7 +65,7 @@ function Enmeaten(createOpts) {
           line: [bone[1], point],
           lengthRange: forkLengthRange,
           symmetrical: symmetricalEnds,
-          obtuse: wideEnds
+          angleRange: endAngleRange
         });
         alpha.push(startFork[0]);
         beta.unshift(startFork[1]);
@@ -70,7 +74,7 @@ function Enmeaten(createOpts) {
           line: [bone[i - 1], point],
           lengthRange: forkLengthRange,
           symmetrical: symmetricalEnds,
-          obtuse: wideEnds
+          angleRange: endAngleRange
         });
         alpha.push(endFork[1]);
         beta.unshift(endFork[0]);

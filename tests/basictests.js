@@ -61,7 +61,7 @@ var testCases = [
     opts: {
       bone: [[30, 50], [0, 20], [10, -10], [0, -30]],
       symmetricalEnds: true,
-      wideEnds: true
+      endAngleRange: [60, 90]
     }
   },
 
