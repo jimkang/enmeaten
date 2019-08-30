@@ -1,3 +1,7 @@
+include config.mk
+
+HOMEDIR = $(shell pwd)
+
 test:
 	node tests/basictests.js
 
@@ -7,3 +11,6 @@ pushall:
 prettier:
 	prettier --single-quote --write "**/*.js"
 
+sync:
+	rsync -a $(HOMEDIR)/ $(USER)@$(SERVER):/$(APPDIR) --exclude node_modules/ \
+		--omit-dir-times --no-perms
